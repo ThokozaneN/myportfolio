@@ -175,3 +175,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize first slide
     showSlide(0);
 });
+

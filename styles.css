@@ -1,6 +1,6 @@
 /* Base Styles */
 :root {
-    --primary: #6C63FF;
+    --primary: #4164ff;
     --primary-dark: #564FD8;
     --secondary: #FF6584;
     --dark: #2D3748;
@@ -995,7 +995,7 @@ a:hover {
 }
 
 /* Cursor */
-.cursor {
+/*.cursor {
     position: fixed;
     width: 20px;
     height: 20px;
@@ -1018,7 +1018,7 @@ a:hover {
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
-}
+} */
 
 /* Responsive */
 @media (max-width: 992px) {
