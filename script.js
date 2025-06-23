@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme Toggle Functionality
+    // Theme Toggle
     const themeToggle = document.getElementById('toggle-theme');
     const html = document.documentElement;
     
@@ -9,13 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     html.setAttribute('data-theme', savedTheme);
     themeToggle.checked = savedTheme === 'dark';
     
-    // Theme toggle event listener
     themeToggle.addEventListener('change', function() {
         const newTheme = this.checked ? 'dark' : 'light';
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
     });
-    
+
     // Mobile Navigation
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
@@ -32,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.remove('active');
         });
     });
-    
-    // Smooth Scrolling for Anchor Links
+
+    // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -50,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Header Scroll Effect
     const header = document.querySelector('.header');
     window.addEventListener('scroll', function() {
@@ -60,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
     });
-    
-    // Project Slider Functionality
+
+    // Project Slider
     const slides = document.querySelectorAll('.project-slide');
     const dots = document.querySelectorAll('.project-dots .dot');
     const prevBtn = document.querySelector('.project-prev');
@@ -110,56 +109,186 @@ document.addEventListener('DOMContentLoaded', function() {
         startSlideInterval();
     });
     
-    // Auto-rotation of slides
+    // Auto-rotation
     function startSlideInterval() {
         slideInterval = setInterval(() => {
             nextSlide();
         }, 5000);
     }
     
-    // Pause auto-rotation on hover
+    // Pause on hover
     const slider = document.querySelector('.project-slider');
     slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
     slider.addEventListener('mouseleave', startSlideInterval);
-    
-    // Contact Form Submission
+
+    // Contact Form Handling
     const contactForm = document.getElementById('project-form');
+    const successMessage = document.getElementById('form-success');
+    const errorMessage = document.getElementById('form-error');
     
+    if (contactForm) {
+        // Toggle required fields based on contact method
+        const emailField = contactForm.querySelector('#email');
+        const phoneField = contactForm.querySelector('#phone');
+        const contactMethods = contactForm.querySelectorAll('input[name="contactMethod"]');
+        
+        contactMethods.forEach(method => {
+            method.addEventListener('change', function() {
+                if (this.value === 'email') {
+                    emailField.required = true;
+                    phoneField.required = false;
+                } else {
+                    emailField.required = false;
+                    phoneField.required = true;
+                }
+            });
+        });
+        
+    // Contact Form Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('project-form');
+    const emailField = document.getElementById('email-field');
+    const phoneField = document.getElementById('phone-field');
+    const contactEmail = document.getElementById('contact-email');
+    const contactWhatsapp = document.getElementById('contact-whatsapp');
+    const successMessage = document.getElementById('form-success');
+    const errorMessage = document.getElementById('form-error');
+    const errorMessageText = document.getElementById('error-message-text');
+    const closeButtons = document.querySelectorAll('.close-message');
+
+    // Toggle contact method fields
+    function toggleContactFields() {
+        if (contactEmail.checked) {
+            emailField.style.display = 'block';
+            phoneField.style.display = 'none';
+            document.getElementById('email').required = true;
+            document.getElementById('phone').required = false;
+        } else {
+            emailField.style.display = 'none';
+            phoneField.style.display = 'block';
+            document.getElementById('email').required = false;
+            document.getElementById('phone').required = true;
+        }
+    }
+
+    // Initialize fields
+    toggleContactFields();
+
+    // Add event listeners for radio buttons
+    contactEmail.addEventListener('change', toggleContactFields);
+    contactWhatsapp.addEventListener('change', toggleContactFields);
+
+    // Close message buttons
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            successMessage.classList.remove('active');
+            errorMessage.classList.remove('active');
+        });
+    });
+
+    // Form submission
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Form submission handling would go here
             const submitBtn = this.querySelector('.form-submit');
-            const originalText = submitBtn.textContent;
+            const originalText = submitBtn.querySelector('.button-text').textContent;
+            const formData = new FormData(this);
+            const contactMethod = formData.get('contactMethod');
             
-            // Simulate form submission
-            submitBtn.textContent = 'Sending...';
+            // Get form values
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const project = formData.get('project');
+            
+            // Validate contact method
+            if (contactMethod === 'email' && !email) {
+                showError('nxuthokozane@outlook.com');
+                return;
+            }
+            
+            if (contactMethod === 'whatsapp' && !phone) {
+                showError('+27762485764');
+                return;
+            }
+            
+            // Show sending state
             submitBtn.disabled = true;
+            submitBtn.querySelector('.button-text').textContent = 'Sending...';
             
-            setTimeout(() => {
-                submitBtn.textContent = 'Message Sent!';
-                submitBtn.style.backgroundColor = '#27C93F';
+            // Prepare message
+            const message = `New message from ${name}:\n\n${project}\n\nPreferred contact: ${contactMethod === 'email' ? email : 'WhatsApp: ' + phone}`;
+            
+            if (contactMethod === 'email') {
+                // Send via email using FormSubmit
+                const emailUrl = 'https://formsubmit.co/ajax/nxuthokozane@outlook.com';
                 
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.backgroundColor = '';
+                fetch(emailUrl, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message,
+                        _subject: 'New Project Inquiry - Your Portfolio'
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok');
+                })
+                .then(data => {
+                    showSuccess();
+                    contactForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showError('Failed to send message. Please try again later.');
+                })
+                .finally(() => {
                     submitBtn.disabled = false;
-                    this.reset();
-                }, 3000);
-            }, 1000);
+                    submitBtn.querySelector('.button-text').textContent = originalText;
+                });
+                
+            } else {
+                // Send via WhatsApp
+                const whatsappUrl = `https://wa.me/+27762485764?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                showSuccess();
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.querySelector('.button-text').textContent = originalText;
+            }
         });
     }
-    
+
+    function showSuccess() {
+        successMessage.classList.add('active');
+        errorMessage.classList.remove('active');
+    }
+
+    function showError(message) {
+        errorMessageText.textContent = message;
+        errorMessage.classList.add('active');
+        successMessage.classList.remove('active');
+    }
+});
+}
+
     // Stats Bars Animation
     const statBars = document.querySelectorAll('.stat-progress');
     
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Force reflow to trigger animation
-                void entry.target.offsetWidth;
-                entry.target.style.width = entry.target.style.width;
+                entry.target.style.width = entry.target.style.width; // Force animation
                 statsObserver.unobserve(entry.target);
             }
         });
@@ -169,8 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     statBars.forEach(bar => statsObserver.observe(bar));
-    
-    // Scroll Animations for Sections
+
+    // Scroll Animations
     const animateElements = document.querySelectorAll('.animate-from-left, .animate-from-right, .animate-card');
     
     const animationObserver = new IntersectionObserver((entries) => {
@@ -186,32 +315,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     animateElements.forEach(el => animationObserver.observe(el));
-    
-    // Profile Image Hover Effect
-    const profileImg = document.querySelector('.profile-img');
-    if (profileImg) {
-        profileImg.addEventListener('mouseenter', () => {
-            document.querySelector('.image-decorator').style.transform = 'translate(-10px, -10px)';
-        });
-        
-        profileImg.addEventListener('mouseleave', () => {
-            document.querySelector('.image-decorator').style.transform = 'translate(-15px, -15px)';
-        });
-    }
-    
-    // Initialize Components
+
+    // Initialize
     function init() {
-        // Show first slide
         showSlide(0);
-        
-        // Start slideshow
         startSlideInterval();
         
-        // Set initial header state
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         }
     }
-    
+
     init();
 });
