@@ -264,242 +264,117 @@
     </div>
 </section>
 
-    <!--Stats -->
-    <section class="section stats-section">
-        <div class="section-header">
-            <h2 class="section-title">My Digital Toolbox</h2>
-            <p class="section-subtitle">Languages I speak fluently</p>
-        </div>
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-info">
-                    <span class="stat-name">JavaScript/TypeScript</span>
-                    <span class="stat-percent">90%</span>
-                </div>
-                <div class="stat-bar">
-                    <div class="stat-progress" style="width: 95%;"></div>
-                </div>
+<!-- Add this new section after the craft section -->
+<section class="section stats-section">
+    <div class="section-header">
+        <h2 class="section-title">My Digital Toolbox</h2>
+        <p class="section-subtitle">Languages I speak fluently</p>
+    </div>
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-info">
+                <span class="stat-name">JavaScript/TypeScript</span>
+                <span class="stat-percent">90%</span>
             </div>
-            <div class="stat-item">
-                <div class="stat-info">
-                    <span class="stat-name">HTML/CSS</span>
-                    <span class="stat-percent">100%</span>
-                </div>
-                <div class="stat-bar">
-                    <div class="stat-progress" style="width: 100%;"></div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-info">
-                    <span class="stat-name">Python</span>
-                    <span class="stat-percent">85%</span>
-                </div>
-                <div class="stat-bar">
-                    <div class="stat-progress" style="width: 85%;"></div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-info">
-                    <span class="stat-name">PHP</span>
-                    <span class="stat-percent">75%</span>
-                </div>
-                <div class="stat-bar">
-                    <div class="stat-progress" style="width: 75%;"></div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-info">
-                    <span class="stat-name">Django</span>
-                    <span class="stat-percent">50%</span>
-                </div>
-                <div class="stat-bar">
-                    <div class="stat-progress" style="width: 90%;"></div>
-                </div>
+            <div class="stat-bar">
+                <div class="stat-progress" style="width: 95%;"></div>
             </div>
         </div>
-    </section>
+        <div class="stat-item">
+            <div class="stat-info">
+                <span class="stat-name">HTML/CSS</span>
+                <span class="stat-percent">100%</span>
+            </div>
+            <div class="stat-bar">
+                <div class="stat-progress" style="width: 100%;"></div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-info">
+                <span class="stat-name">Python</span>
+                <span class="stat-percent">85%</span>
+            </div>
+            <div class="stat-bar">
+                <div class="stat-progress" style="width: 85%;"></div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-info">
+                <span class="stat-name">PHP</span>
+                <span class="stat-percent">75%</span>
+            </div>
+            <div class="stat-bar">
+                <div class="stat-progress" style="width: 75%;"></div>
+            </div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-info">
+                <span class="stat-name">Django</span>
+                <span class="stat-percent">50%</span>
+            </div>
+            <div class="stat-bar">
+                <div class="stat-progress" style="width: 90%;"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section id="connect" class="section connect-section">
-            <div class="connect-container">
-                <div class="section-header">
-                    <h2 class="section-title">Let's Create Something <span class="text-gradient">Remarkable</span></h2>
-                    <p class="section-subtitle">Your vision + my expertise = digital magic</p>
+            <div class="section-header">
+                <h2 class="section-title">Let's Create Something Remarkable</h2>
+                <p class="section-subtitle">Your vision + my expertise = digital magic</p>
+            </div>
+            <div class="connect-content">
+                <div class="contact-form">
+                    <form id="project-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="project">Tell Me About Your Project</label>
+                            <textarea id="project" name="project" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button form-submit">Send Message</button>
+                    </form>
                 </div>
-
-                <div class="connect-grid">
-                    <!-- Contact Form Column -->
-                    <div class="connect-form-container">
-                        <div class="contact-form-card">
-                            <form id="project-form" class="contact-form">
-                                <div class="form-header">
-                                    <h3>Get in Touch</h3>
-                                    <p>Have a project in mind? Let's discuss how I can help bring it to life.</p>
-                                </div>
-
-                                <div class="form-grid">
-                                    <!-- Name Field -->
-                                    <div class="form-group">
-                                        <label for="name">Your Name*</label>
-                                        <div class="input-wrapper">
-                                            <i class="fas fa-user"></i>
-                                            <input type="text" id="name" name="name" required placeholder="John Doe">
-                                        </div>
-                                    </div>
-
-                                    <!-- Contact Method Toggle -->
-                                    <div class="form-group contact-method-toggle">
-                                        <label class="method-label">Preferred Contact Method*</label>
-                                        <div class="toggle-switch">
-                                            <input type="radio" id="contact-email" name="contactMethod" value="email" checked>
-                                            <label for="contact-email" class="toggle-option">
-                                                <i class="fas fa-envelope"></i>
-                                                <span>Email</span>
-                                            </label>
-                                            
-                                            <input type="radio" id="contact-whatsapp" name="contactMethod" value="whatsapp">
-                                            <label for="contact-whatsapp" class="toggle-option">
-                                                <i class="fab fa-whatsapp"></i>
-                                                <span>WhatsApp</span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <!-- Dynamic Contact Field -->
-                                    <div class="form-group contact-dynamic-field">
-                                        <div id="email-field">
-                                            <label for="email">Email Address*</label>
-                                            <div class="input-wrapper">
-                                                <i class="fas fa-envelope"></i>
-                                                <input type="email" id="email" name="email" placeholder="john@example.com">
-                                            </div>
-                                        </div>
-                                        <div id="phone-field" style="display: none;">
-                                            <label for="phone">WhatsApp Number*</label>
-                                            <div class="input-wrapper">
-                                                <i class="fas fa-phone"></i>
-                                                <input type="tel" id="phone" name="phone" placeholder="1234567890">
-                                            </div>
-                                            <small class="hint">Include country code without + or 0 (e.g. 27123456789)</small>
-                                        </div>
-                                    </div>
-
-                                    <!-- Project Details -->
-                                    <div class="form-group full-width">
-                                        <label for="project">Project Details*</label>
-                                        <div class="textarea-wrapper">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <textarea id="project" name="project" rows="5" required placeholder="Tell me about your project..."></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="cta-button form-submit">
-                                    <span class="button-text">Send Message</span>
-                                    <i class="fas fa-paper-plane button-icon"></i>
-                                </button>
-
-                                <div class="form-footer">
-                                    <p class="form-disclaimer">
-                                        <i class="fas fa-lock"></i> Your information is secure. I'll respond within 24 hours.
-                                    </p>
-                                </div>
-                            </form>
-
-                            <!-- Form Messages -->
-                            <div id="form-success" class="form-message success-message">
-                                <div class="message-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div class="message-content">
-                                    <h3>Message Sent!</h3>
-                                    <p>Thank you for reaching out. I'll get back to you shortly.</p>
-                                </div>
-                                <button class="close-message" aria-label="Close message">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-
-                            <div id="form-error" class="form-message error-message">
-                                <div class="message-icon">
-                                    <i class="fas fa-exclamation-circle"></i>
-                                </div>
-                                <div class="message-content">
-                                    <h3>Oops! Something went wrong</h3>
-                                    <p id="error-message-text">Please try again or contact me directly.</p>
-                                </div>
-                                <button class="close-message" aria-label="Close message">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3 class="info-title">Email Me</h3>
+                            <a href="mailto:nxuthokozane@outlook.com" class="info-link">nxuthokozane@outlook.com</a>
                         </div>
                     </div>
-
-                    <!-- Contact Info Column -->
-                    <div class="connect-info-container">
-                        <div class="contact-info-card">
-                            <div class="info-header">
-                                <h3>Direct Contact</h3>
-                                <p>Prefer to reach out directly? Here's how you can find me:</p>
-                            </div>
-
-                            <div class="info-content">
-                                <!-- Email -->
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="info-details">
-                                        <h4>Email Me</h4>
-                                        <a href="mailto:nxuthokozane@outlook.com" class="info-link">nxuthokozane@outlook.com</a>
-                                    </div>
-                                </div>
-
-                                <!-- Location -->
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <div class="info-details">
-                                        <h4>Based In</h4>
-                                        <p>Embalenhle, Mpumalanga<br><span class="location-note">(Working with clients globally)</span></p>
-                                    </div>
-                                </div>
-
-                                <!-- Availability -->
-                                <div class="info-item">
-                                    <div class="info-icon">
-                                        <i class="fas fa-calendar-check"></i>
-                                    </div>
-                                    <div class="info-details">
-                                        <h4>Availability</h4>
-                                        <p>Currently accepting new projects<br><span class="highlight-text">Q3 2025 openings</span></p>
-                                    </div>
-                                </div>
-
-                                <!-- Social Links -->
-                                <div class="social-section">
-                                    <h4>Connect With Me</h4>
-                                    <div class="social-links-grid">
-                                        <a href="https://github.com/thokozanen" class="social-link" target="_blank" rel="noopener noreferrer">
-                                            <i class="fab fa-github"></i>
-                                            <span>GitHub</span>
-                                        </a>
-                                        <a href="https://www.instagram.com/_nxuthokozani?igsh=MXVoY2k4a3NuZnczMA==" class="social-link" target="_blank" rel="noopener noreferrer">
-                                            <i class="fab fa-instagram"></i>
-                                            <span>Instagram</span>
-                                        </a>
-                                        <a href="https://www.facebook.com/share/1Ckvt8iVe3/" class="social-link" target="_blank" rel="noopener noreferrer">
-                                            <i class="fab fa-facebook-f"></i>
-                                            <span>Facebook</span>
-                                        </a>
-                                        <a href="https://www.linkedin.com/in/thokozane-nxumalo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link" target="_blank" rel="noopener noreferrer">
-                                            <i class="fab fa-linkedin-in"></i>
-                                            <span>LinkedIn</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
+                        <div class="info-content">
+                            <h3 class="info-title">Based In</h3>
+                            <p class="info-text">Embalenhle, Mpumalanga (but working globally)</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3 class="info-title">Availability</h3>
+                            <p class="info-text">Currently accepting new projects for Q3 2025</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/thokozanen" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/_nxuthokozani?igsh=MXVoY2k4a3NuZnczMA==" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1Ckvt8iVe3/" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/thokozane-nxumalo?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
