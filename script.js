@@ -121,19 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Cursor effects on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .craft-card, .info-card, .social-link, .nav-link, .theme-toggle');
+   // const interactiveElements = document.querySelectorAll('a, button, .craft-card, .info-card, .social-link, .nav-link, .theme-toggle');
     
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
-        });
+    //interactiveElements.forEach(el => {
+      //  el.addEventListener('mouseenter', () => {
+        //    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+          //  cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
+        //});
         
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-    });
+       // el.addEventListener('mouseleave', () => {
+         //   cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+           // cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+       // });
+   // });
     
     // Form submission
     const contactForm = document.getElementById('project-form');
