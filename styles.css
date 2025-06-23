@@ -1108,3 +1108,160 @@ a:hover {
         padding: 1.5rem;
     }
 }
+
+/* About Section */
+.about-section {
+    background-color: var(--light);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-image {
+    position: relative;
+    flex: 1;
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-md);
+    position: relative;
+    z-index: 2;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.profile-img:hover {
+    transform: scale(1.02);
+}
+
+.image-decorator {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--primary);
+    border-radius: var(--radius-md);
+    z-index: 1;
+    transition: var(--transition);
+}
+
+.about-image:hover .image-decorator {
+    top: -15px;
+    left: -15px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.personal-signature {
+    margin-top: 2rem;
+}
+
+.signature-img {
+    height: 60px;
+    opacity: 0.8;
+}
+
+/* Stats Section */
+.stats-section {
+    background-color: var(--lighter);
+}
+
+.stats-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stat-item {
+    margin-bottom: 2rem;
+}
+
+.stat-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.stat-name {
+    font-weight: 500;
+    color: var(--dark);
+    font-family: 'Space Mono', monospace;
+}
+
+.stat-percent {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.stat-bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--gray);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.stat-progress {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 5px;
+    position: relative;
+    transition: width 1.5s ease-out;
+}
+
+.stat-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
+}
+
+/* Remove cursor styles */
+.cursor, .cursor-follower {
+    display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-image {
+        margin-bottom: 3rem;
+    }
+    
+    .personal-signature {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-img {
+        max-width: 300px;
+    }
+    
+    .image-decorator {
+        top: -10px;
+        left: -10px;
+    }
+}
