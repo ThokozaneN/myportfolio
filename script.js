@@ -1,21 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme Toggle
+    // Theme Toggle Functionality
     const themeToggle = document.getElementById('toggle-theme');
     const html = document.documentElement;
     
-    // Check for saved theme preference or use preferred color scheme
+    // Set initial theme based on preference or system setting
     const savedTheme = localStorage.getItem('theme') || 
                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     html.setAttribute('data-theme', savedTheme);
     themeToggle.checked = savedTheme === 'dark';
     
+    // Theme toggle event listener
     themeToggle.addEventListener('change', function() {
         const newTheme = this.checked ? 'dark' : 'light';
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
     });
     
-    // Mobile Menu
+    // Mobile Navigation
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Smooth scrolling for anchor links
+    // Smooth Scrolling for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Header scroll effect
+    // Header Scroll Effect
     const header = document.querySelector('.header');
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -60,12 +61,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Project slider
+    // Project Slider Functionality
     const slides = document.querySelectorAll('.project-slide');
     const dots = document.querySelectorAll('.project-dots .dot');
     const prevBtn = document.querySelector('.project-prev');
     const nextBtn = document.querySelector('.project-next');
     let currentSlide = 0;
+    let slideInterval;
     
     function showSlide(index) {
         slides.forEach(slide => slide.classList.remove('active'));
@@ -76,103 +78,140 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSlide = index;
     }
     
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => showSlide(index));
-    });
+    function nextSlide() {
+        const newIndex = (currentSlide + 1) % slides.length;
+        showSlide(newIndex);
+    }
     
-    prevBtn.addEventListener('click', () => {
+    function prevSlide() {
         const newIndex = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(newIndex);
+    }
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            showSlide(index);
+            startSlideInterval();
+        });
+    });
+    
+    // Button navigation
+    prevBtn.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        prevSlide();
+        startSlideInterval();
     });
     
     nextBtn.addEventListener('click', () => {
-        const newIndex = (currentSlide + 1) % slides.length;
-        showSlide(newIndex);
+        clearInterval(slideInterval);
+        nextSlide();
+        startSlideInterval();
     });
     
-    // Auto-rotate slides
-    let slideInterval = setInterval(() => {
-        const newIndex = (currentSlide + 1) % slides.length;
-        showSlide(newIndex);
-    }, 5000);
+    // Auto-rotation of slides
+    function startSlideInterval() {
+        slideInterval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+    }
     
     // Pause auto-rotation on hover
     const slider = document.querySelector('.project-slider');
     slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    slider.addEventListener('mouseleave', () => {
-        slideInterval = setInterval(() => {
-            const newIndex = (currentSlide + 1) % slides.length;
-            showSlide(newIndex);
-        }, 5000);
-    });
+    slider.addEventListener('mouseleave', startSlideInterval);
     
-    // Custom cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 100);
-    });
-    
-    // Cursor effects on interactive elements
-   // const interactiveElements = document.querySelectorAll('a, button, .craft-card, .info-card, .social-link, .nav-link, .theme-toggle');
-    
-    //interactiveElements.forEach(el => {
-      //  el.addEventListener('mouseenter', () => {
-        //    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-          //  cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.5)';
-        //});
-        
-       // el.addEventListener('mouseleave', () => {
-         //   cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-           // cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-       // });
-   // });
-    
-    // Form submission
+    // Contact Form Submission
     const contactForm = document.getElementById('project-form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Here you would typically send the form data to a server
-            // For this example, we'll just show a success message
+            // Form submission handling would go here
             const submitBtn = this.querySelector('.form-submit');
-            submitBtn.textContent = 'Message Sent!';
-            submitBtn.style.backgroundColor = '#27C93F';
+            const originalText = submitBtn.textContent;
+            
+            // Simulate form submission
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
             
             setTimeout(() => {
-                submitBtn.textContent = 'Send Message';
-                submitBtn.style.backgroundColor = '';
-                this.reset();
-            }, 3000);
+                submitBtn.textContent = 'Message Sent!';
+                submitBtn.style.backgroundColor = '#27C93F';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.disabled = false;
+                    this.reset();
+                }, 3000);
+            }, 1000);
         });
     }
     
-    // Intersection Observer for animations
-    const animateElements = document.querySelectorAll('.animate-from-left, .animate-from-right, .animate-card');
+    // Stats Bars Animation
+    const statBars = document.querySelectorAll('.stat-progress');
     
-    const observer = new IntersectionObserver((entries) => {
+    const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                observer.unobserve(entry.target);
+                // Force reflow to trigger animation
+                void entry.target.offsetWidth;
+                entry.target.style.width = entry.target.style.width;
+                statsObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
     });
     
-    animateElements.forEach(el => observer.observe(el));
+    statBars.forEach(bar => statsObserver.observe(bar));
     
-    // Initialize first slide
-    showSlide(0);
+    // Scroll Animations for Sections
+    const animateElements = document.querySelectorAll('.animate-from-left, .animate-from-right, .animate-card');
+    
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                animationObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    animateElements.forEach(el => animationObserver.observe(el));
+    
+    // Profile Image Hover Effect
+    const profileImg = document.querySelector('.profile-img');
+    if (profileImg) {
+        profileImg.addEventListener('mouseenter', () => {
+            document.querySelector('.image-decorator').style.transform = 'translate(-10px, -10px)';
+        });
+        
+        profileImg.addEventListener('mouseleave', () => {
+            document.querySelector('.image-decorator').style.transform = 'translate(-15px, -15px)';
+        });
+    }
+    
+    // Initialize Components
+    function init() {
+        // Show first slide
+        showSlide(0);
+        
+        // Start slideshow
+        startSlideInterval();
+        
+        // Set initial header state
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        }
+    }
+    
+    init();
 });
-
